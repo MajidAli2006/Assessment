@@ -18,19 +18,42 @@ The Flutter app has been successfully implemented and tested on both iOS and And
 
 ## Results
 
-The app successfully displays market data on both platforms:
+The app has been tested on both iOS and Android platforms with proper error handling:
 
 ### Android Emulator
+
+**Error State** - When backend is not accessible:
+![Android Error Screen](screenshots/android-error.png)
+*Error handling screen showing "Network error. Please check your connection" with retry button*
+
+**Success State** - Market data loaded successfully:
 ![Android Market Data Screen](screenshots/android-market-data.png)
 *Market data displayed successfully on Android emulator with real-time price updates*
 
-**Note**: Add your Android screenshot as `screenshots/android-market-data.png`
+**Features visible:**
+- List of cryptocurrency pairs (BTC/USD, ETH/USD, SOL/USD, ADA/USD, DOT/USD)
+- Current prices formatted as currency
+- 24h change percentages with color coding (green for positive, red for negative)
+- Clean card-based UI with rounded corners
+- Pull-to-refresh functionality
+- Error state with retry functionality
 
 ### iOS Simulator
+
+**Error State** - When backend is not accessible:
+![iOS Error Screen](screenshots/ios-error.png)
+*Error handling screen showing "Network error. Please check your connection" with retry button*
+
+**Success State** - Market data loaded successfully:
 ![iOS Market Data Screen](screenshots/ios-market-data.png)
 *Market data displayed successfully on iOS simulator with color-coded price changes*
 
-**Note**: Add your iOS screenshot as `screenshots/ios-market-data.png`
+**Features visible:**
+- List of cryptocurrency pairs with prices
+- Formatted currency and percentage displays
+- Green/red color coding for positive/negative changes
+- Loading states and error handling with retry functionality
+- Native iOS design patterns
 
 ## Project Structure
 

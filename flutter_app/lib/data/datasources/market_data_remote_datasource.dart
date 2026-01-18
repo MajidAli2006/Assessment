@@ -123,7 +123,10 @@ class MarketDataRemoteDataSource implements IMarketDataDataSource {
       }
 
       if (jsonData['success'] != true) {
-        final errorMessage = jsonData['error']?['message'] ?? 'Invalid response';
+        final errorObj = jsonData['error'];
+        final errorMessage = (errorObj is Map<String, dynamic> && errorObj['message'] is String)
+            ? errorObj['message'] as String
+            : 'Invalid response';
         throw InvalidDataFailure(errorMessage);
       }
 
@@ -165,5 +168,3 @@ class MarketDataRemoteDataSource implements IMarketDataDataSource {
     }
   }
 }
-
-

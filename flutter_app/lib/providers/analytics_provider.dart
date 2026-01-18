@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import '../services/api_service.dart';
 
 class AnalyticsProvider with ChangeNotifier {
+  // ignore: unused_field
   final ApiService _apiService = ApiService();
   
   Map<String, dynamic>? _overview;

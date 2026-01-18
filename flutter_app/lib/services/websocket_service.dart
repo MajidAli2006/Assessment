@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import '../utils/constants.dart';
+// TODO: Uncomment when implementing WebSocket
+// import 'dart:convert';
+// import 'package:web_socket_channel/web_socket_channel.dart';
+// import '../utils/constants.dart';
 
 class WebSocketService {
-  WebSocketChannel? _channel;
+  // ignore: unused_field
+  // WebSocketChannel? _channel;
   StreamController<Map<String, dynamic>>? _controller;
   
   // TODO: Implement WebSocket connection
@@ -28,7 +30,8 @@ class WebSocketService {
   }
   
   void disconnect() {
-    _channel?.sink.close();
+    // TODO: Uncomment when implementing WebSocket
+    // _channel?.sink.close();
     _controller?.close();
   }
 }

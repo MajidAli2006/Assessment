@@ -36,7 +36,6 @@ class MarketDataProvider with ChangeNotifier {
     
     try {
       _marketData = await _repository.getMarketData();
-      _clearError();
     } on Failure catch (failure) {
       _setFailure(failure);
       _logError(failure);

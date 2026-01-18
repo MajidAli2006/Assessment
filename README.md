@@ -137,6 +137,57 @@ See `ASSESSMENT.md` for detailed requirements and evaluation criteria.
 - Dependency injection ready structure
 - Comprehensive error handling with custom failure types
 
+## Code Quality & Linting
+
+The project uses comprehensive lint rules to ensure high code quality and consistency. The lint configuration is defined in `flutter_app/analysis_options.yaml`.
+
+### Lint Configuration
+
+**Analyzer Settings:**
+- **Strict Type Checking**: Enabled for `strict-casts`, `strict-inference`, and `strict-raw-types`
+- **Exclusions**: Generated files (*.g.dart, *.freezed.dart) are excluded
+
+**Linter Rules (80+ rules enabled):**
+
+- **Error Prevention**: Type safety, null checks, unawaited futures, resource cleanup
+- **Code Style**: Const constructors, final variables, single quotes, consistent formatting
+- **Flutter Best Practices**: Widget constructors, build context usage, unnecessary containers
+- **Import Organization**: Package imports preferred over relative imports
+- **Performance**: Prefer efficient collections, avoid unnecessary operations
+
+### Running Lint Checks
+
+To check for lint issues:
+
+```bash
+cd flutter_app
+flutter analyze
+```
+
+To fix auto-fixable issues:
+
+```bash
+dart fix --apply
+```
+
+### Key Lint Rules
+
+Some of the most important rules enforced:
+- `always_declare_return_types` - All methods must have explicit return types
+- `prefer_const_constructors` - Use const constructors where possible
+- `avoid_print` - Use proper logging instead of print statements
+- `use_key_in_widget_constructors` - Always provide keys in widget constructors
+- `avoid_relative_lib_imports` - Use package imports for better maintainability
+- `prefer_final_fields` - Use final for immutable fields
+- `sort_child_properties_last` - Consistent widget property ordering
+
+These rules help maintain:
+- ✅ Type safety throughout the codebase
+- ✅ Consistent code style across the project
+- ✅ Better performance through const usage
+- ✅ Prevention of common Flutter pitfalls
+- ✅ Improved code maintainability
+
 ## Backend API
 
 The backend provides a simple **Market Data API** endpoint:

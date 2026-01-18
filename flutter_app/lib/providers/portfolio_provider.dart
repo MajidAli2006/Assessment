@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import '../services/api_service.dart';
 
 class PortfolioProvider with ChangeNotifier {
+  // ignore: unused_field
   final ApiService _apiService = ApiService();
   
   Map<String, dynamic>? _summary;

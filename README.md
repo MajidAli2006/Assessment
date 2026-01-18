@@ -2,6 +2,36 @@
 
 This repository contains the take-home assessment for the Flutter Developer position at PulseNow.
 
+## Implementation Summary
+
+The Flutter app has been successfully implemented and tested on both iOS and Android platforms. Key achievements include:
+
+- **✅ Complete API Integration**: Implemented repository pattern with remote data source connecting to the Node.js backend
+- **✅ Data Models**: MarketData model with proper null safety and JSON parsing
+- **✅ State Management**: Provider-based state management with loading, error, and data states
+- **✅ UI Implementation**: Market data screen with ListView, loading indicators, error handling, and color-coded price changes
+- **✅ Platform Configuration**: 
+  - Android: Configured to use `10.0.2.2` for emulator access to localhost backend
+  - iOS: Added App Transport Security settings to allow localhost connections
+- **✅ Error Handling**: Comprehensive error handling with user-friendly messages and retry functionality
+- **✅ Code Quality**: Clean architecture following Flutter best practices with proper separation of concerns
+
+## Results
+
+The app successfully displays market data on both platforms:
+
+### Android Emulator
+![Android Market Data Screen](screenshots/android-market-data.png)
+*Market data displayed successfully on Android emulator with real-time price updates*
+
+**Note**: Add your Android screenshot as `screenshots/android-market-data.png`
+
+### iOS Simulator
+![iOS Market Data Screen](screenshots/ios-market-data.png)
+*Market data displayed successfully on iOS simulator with color-coded price changes*
+
+**Note**: Add your iOS screenshot as `screenshots/ios-market-data.png`
+
 ## Project Structure
 
 ```
@@ -34,6 +64,8 @@ npm start
 
 The backend will run on `http://localhost:3000`
 
+**Important**: The backend server must be running before starting the Flutter app.
+
 ### 2. Start the Flutter App
 
 ```bash
@@ -41,6 +73,16 @@ cd flutter_app
 flutter pub get
 flutter run
 ```
+
+### Platform-Specific Configuration
+
+**For Android Emulator:**
+- The app is configured to use `10.0.2.2:3000` to access the host machine's localhost
+- Configuration in `lib/core/constants/app_constants.dart`
+
+**For iOS Simulator:**
+- The app uses `localhost:3000` directly
+- App Transport Security settings configured in `ios/Runner/Info.plist`
 
 ## Assessment Overview
 
@@ -53,6 +95,24 @@ This is a focused assessment that tests your ability to:
 - Write clean, maintainable code
 
 See `ASSESSMENT.md` for detailed requirements and evaluation criteria.
+
+## Features Implemented
+
+### Core Features
+- ✅ Market data display with crypto symbols, prices, and 24h changes
+- ✅ Color-coded price changes (green for positive, red for negative)
+- ✅ Loading states with progress indicators
+- ✅ Error handling with retry functionality
+- ✅ Pull-to-refresh support
+- ✅ Formatted currency and percentage displays
+- ✅ Empty state handling
+
+### Architecture
+- Clean Architecture with separation of layers (data, domain, presentation)
+- Repository pattern for data management
+- Provider for state management
+- Dependency injection ready structure
+- Comprehensive error handling with custom failure types
 
 ## Backend API
 

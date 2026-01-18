@@ -2,79 +2,6 @@
 
 This repository contains the take-home assessment for the Flutter Developer position at PulseNow.
 
-## Implementation Summary
-
-The Flutter app has been successfully implemented and tested on both iOS and Android platforms. Key achievements include:
-
-- **✅ Complete API Integration**: Implemented repository pattern with remote data source connecting to the Node.js backend
-- **✅ Data Models**: MarketData model with proper null safety and JSON parsing
-- **✅ State Management**: Provider-based state management with loading, error, and data states
-- **✅ UI Implementation**: Market data screen with ListView, loading indicators, error handling, and color-coded price changes
-- **✅ Platform Configuration**: 
-  - Android: Configured to use `10.0.2.2` for emulator access to localhost backend
-  - iOS: Added App Transport Security settings to allow localhost connections
-- **✅ Error Handling**: Comprehensive error handling with user-friendly messages and retry functionality
-- **✅ Code Quality**: Clean architecture following Flutter best practices with proper separation of concerns
-
-## Results
-
-The app has been tested on both iOS and Android platforms with proper error handling:
-
-### Android Emulator
-
-**Error State** - When backend is not accessible:
-![Android Error Screen](screenshots/android-error.png)
-*Error handling screen showing "Network error. Please check your connection" with retry button*
-
-**Success State** - Market data loaded successfully:
-![Android Market Data Screen](screenshots/android-market-data.png)
-*Market data displayed successfully on Android emulator with real-time price updates*
-
-**Features visible:**
-- List of cryptocurrency pairs (BTC/USD, ETH/USD, SOL/USD, ADA/USD, DOT/USD)
-- Current prices formatted as currency
-- 24h change percentages with color coding (green for positive, red for negative)
-- Clean card-based UI with rounded corners
-- Pull-to-refresh functionality
-- Error state with retry functionality
-
-### iOS Simulator
-
-**Error State** - When backend is not accessible:
-![iOS Error Screen](screenshots/ios-error.png)
-*Error handling screen showing "Network error. Please check your connection" with retry button*
-
-**Success State** - Market data loaded successfully:
-![iOS Market Data Screen](screenshots/ios-market-data.png)
-*Market data displayed successfully on iOS simulator with color-coded price changes*
-
-**Features visible:**
-- List of cryptocurrency pairs with prices
-- Formatted currency and percentage displays
-- Green/red color coding for positive/negative changes
-- Loading states and error handling with retry functionality
-- Native iOS design patterns
-
-## Project Structure
-
-```
-.
-├── backend/              # Node.js backend API with mock data
-│   ├── controllers/      # API route controllers
-│   ├── data/            # Mock data generators
-│   ├── middlewares/     # Express middlewares
-│   └── server.js        # Main server file
-│
-├── flutter_app/         # Flutter application (to be completed)
-│   └── lib/
-│       ├── models/      # Data models
-│       ├── services/    # API and WebSocket services
-│       ├── providers/   # State management
-│       └── screens/     # UI screens
-│
-└── ASSESSMENT.md        # Detailed assessment instructions
-```
-
 ## Quick Start
 
 ### 1. Start the Backend
@@ -87,8 +14,6 @@ npm start
 
 The backend will run on `http://localhost:3000`
 
-**Important**: The backend server must be running before starting the Flutter app.
-
 ### 2. Start the Flutter App
 
 ```bash
@@ -97,103 +22,71 @@ flutter pub get
 flutter run
 ```
 
-### Platform-Specific Configuration
-
-**For Android Emulator:**
-- The app is configured to use `10.0.2.2:3000` to access the host machine's localhost
-- Configuration in `lib/core/constants/app_constants.dart`
-
-**For iOS Simulator:**
-- The app uses `localhost:3000` directly
-- App Transport Security settings configured in `ios/Runner/Info.plist`
-
-## Assessment Overview
-
-This is a focused assessment that tests your ability to:
-
-- Integrate Flutter apps with REST APIs
-- Implement state management with Provider
-- Create UI components for displaying data
-- Handle loading and error states
-- Write clean, maintainable code
-
-See `ASSESSMENT.md` for detailed requirements and evaluation criteria.
+**Note**: For Android emulator, update `lib/core/constants/app_constants.dart` to use `10.0.2.2` instead of `localhost`.
 
 ## Features Implemented
 
-### Core Features
 - ✅ Market data display with crypto symbols, prices, and 24h changes
 - ✅ Color-coded price changes (green for positive, red for negative)
-- ✅ Loading states with progress indicators
-- ✅ Error handling with retry functionality
+- ✅ Loading states, error handling with retry, and empty state
 - ✅ Pull-to-refresh support
-- ✅ Formatted currency and percentage displays
-- ✅ Empty state handling
+- ✅ Clean Architecture with Repository pattern
+- ✅ Provider-based state management
+- ✅ Comprehensive error handling with custom Failure types
 
-### Architecture
-- Clean Architecture with separation of layers (data, domain, presentation)
-- Repository pattern for data management
-- Provider for state management
-- Dependency injection ready structure
-- Comprehensive error handling with custom failure types
+## Project Structure
 
-## Code Quality & Linting
+```
+flutter_app/lib/
+├── core/          # Interfaces, errors, constants, theme
+├── data/          # Repository and data source implementations
+├── models/        # Data models
+├── presentation/  # UI screens and widgets
+├── providers/     # State management
+└── utils/         # Utility functions (formatters)
+```
 
-The project uses comprehensive lint rules to ensure high code quality and consistency. The lint configuration is defined in `flutter_app/analysis_options.yaml`.
+## Code Quality
 
-### Lint Configuration
+**Linting**: 80+ lint rules enabled with strict type checking (`flutter_app/analysis_options.yaml`)
 
-**Analyzer Settings:**
-- **Strict Type Checking**: Enabled for `strict-casts`, `strict-inference`, and `strict-raw-types`
-- **Exclusions**: Generated files (*.g.dart, *.freezed.dart) are excluded
-
-**Linter Rules (80+ rules enabled):**
-
-- **Error Prevention**: Type safety, null checks, unawaited futures, resource cleanup
-- **Code Style**: Const constructors, final variables, single quotes, consistent formatting
-- **Flutter Best Practices**: Widget constructors, build context usage, unnecessary containers
-- **Import Organization**: Package imports preferred over relative imports
-- **Performance**: Prefer efficient collections, avoid unnecessary operations
-
-### Running Lint Checks
-
-To check for lint issues:
-
+**Running Lint Checks:**
 ```bash
 cd flutter_app
 flutter analyze
+dart fix --apply  # Auto-fix issues
 ```
 
-To fix auto-fixable issues:
+**Key Rules**: Type safety, const constructors, package imports, Flutter best practices
 
+## Testing
+
+**Test Suite**: Unit tests and widget tests included
+
+**Running Tests:**
 ```bash
-dart fix --apply
+cd flutter_app
+flutter test                    # Run all tests
+flutter test --coverage        # With coverage
+flutter test test/models/...   # Specific file
 ```
 
-### Key Lint Rules
-
-Some of the most important rules enforced:
-- `always_declare_return_types` - All methods must have explicit return types
-- `prefer_const_constructors` - Use const constructors where possible
-- `avoid_print` - Use proper logging instead of print statements
-- `use_key_in_widget_constructors` - Always provide keys in widget constructors
-- `avoid_relative_lib_imports` - Use package imports for better maintainability
-- `prefer_final_fields` - Use final for immutable fields
-- `sort_child_properties_last` - Consistent widget property ordering
-
-These rules help maintain:
-- ✅ Type safety throughout the codebase
-- ✅ Consistent code style across the project
-- ✅ Better performance through const usage
-- ✅ Prevention of common Flutter pitfalls
-- ✅ Improved code maintainability
+**Test Coverage:**
+- ✅ `MarketDataFormatter` - All formatting functions
+- ✅ `MarketData` model - JSON parsing, validation, serialization
+- ✅ `MarketDataListItem` - UI display and formatting
+- ✅ `LoadingWidget` - Loading indicator
+- ✅ `PulseNowApp` - App initialization
 
 ## Backend API
 
-The backend provides a simple **Market Data API** endpoint:
 - `GET /api/market-data` - Returns list of crypto symbols with prices and 24h changes
 
-See `backend/README.md` for API documentation.
+See `backend/README.md` for full API documentation.
+
+## Assessment Details
+
+See `ASSESSMENT.md` for detailed requirements and evaluation criteria.
 
 ## Questions?
 

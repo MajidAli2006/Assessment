@@ -20,8 +20,13 @@ class MarketDataFormatter {
   }
 
   static String formatChange24h(double change24h) {
-    final sign = change24h >= 0 ? AppStrings.positiveSign : '';
-    return '$sign${AppStrings.currencySymbol}${change24h.toStringAsFixed(AppConstants.currencyDecimalDigits)}';
+    final formatter = NumberFormat.currency(
+      symbol: AppStrings.currencySymbol,
+      decimalDigits: AppConstants.currencyDecimalDigits,
+    );
+    final formatted = formatter.format(change24h.abs());
+    final sign = change24h >= 0 ? AppStrings.positiveSign : '-';
+    return '$sign$formatted';
   }
 
   static Color getChangeColor(bool isPositive) {

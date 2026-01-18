@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'market_data_screen.dart';
+import '../core/constants/app_strings.dart';
+import '../core/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,11 +9,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: const Text('PulseNow'),
-        elevation: 0,
+        title: const Text(AppStrings.appName),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: AppGradients.primaryGradient,
+          ),
+        ),
       ),
-      body: const MarketDataScreen(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: AppGradients.backgroundGradient,
+        ),
+        child: const MarketDataScreen(),
+      ),
     );
   }
 }
